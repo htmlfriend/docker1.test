@@ -1,0 +1,16 @@
+version: '3'
+services:
+  nginx:
+    build: ./docker/nginx
+    volumes:
+      - ./:/app
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    ports:
+      - '8080:80'
+    depends_on:
+      - php
+  php:
+    build: ./docker/php
+    volumes:
+      - ./:/app
